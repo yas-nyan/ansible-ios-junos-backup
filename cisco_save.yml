@@ -1,0 +1,22 @@
+---
+- hosts: cisco  
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: include credential
+      include_vars: 
+        file: ./credential.yml
+    - name: save config
+      ios_config:
+        backup: yes
+        save: yes
+        provider: "{{ cli }}"
+
+  vars:
+    cli:   
+      host:     "{{ ansible_host }}"    
+      username: "{{ ansible_user }}"          
+      password: "{{ ansible_password }}"   
+      authorize: False  # or True          
+      auth_pass: "{{ cisco_enable_secret }}"  
