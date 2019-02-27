@@ -1,3 +1,4 @@
 *.retry
-backups
+backup
+hosts
 credential.yml
